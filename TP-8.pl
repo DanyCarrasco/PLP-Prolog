@@ -70,6 +70,7 @@ casado(rodolfo, claudia).
 casado(daniel, andrea).
 casado(norma,carlos).
 casado(cecilia,javier).
+casado(cecilia,juan).
 
 %TP 8
 %Punto 1
@@ -86,4 +87,9 @@ ancestro(X,Y) :- progenitor(X, Y), X \= Y.
 ancestro(X,Y) :- progenitor(Z, Y), ancestro(X, Z).
 
 %Inciso c
-soltero(X) :- not(casado(X,Z)), X/=Z.
+%notCasado(X) :- not (, X \= Z).
+casado(X) :- casado(X,_).
+casado(X) :- casado(_,X).
+
+soltero(X) :- \+ casado(X).  
+amante(X) :- (casado(X,Z); casado(Z,X)); (casado(X,Y); casado(Y, X)), X \= Z, X\= Y, Z \= Y.
