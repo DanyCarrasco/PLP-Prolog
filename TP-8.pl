@@ -70,7 +70,6 @@ casado(rodolfo, claudia).
 casado(daniel, andrea).
 casado(norma,carlos).
 casado(cecilia,javier).
-casado(cecilia,juan).
 
 %TP 8
 %Punto 1
@@ -98,3 +97,16 @@ suegra(X,Y) :- femenino(X), progenitor(X,Z), casado(Z,Y), X \= Y, X \= Z, Y \= Z
 suegra(X,Y) :- femenino(X), progenitor(X,Z), casado(Y,Z), X \= Y, X \= Z, Y \= Z.
 suegro(X,Y) :- masculino(X), progenitor(X,Z), casado(Z,Y), X \= Y, X \= Z, Y \= Z.
 suegro(X,Y) :- masculino(X), progenitor(X,Z), casado(Y,Z), X \= Y, X \= Z, Y \= Z.
+
+%Punto 2
+%ejemplo de hechos para hacer el ejercicio
+on(b,a).
+on(c,b).
+on(d,c).
+on(e,d).
+on(f,e).
+on(g,f).
+on(h,g).
+
+sobre(X,Y) :- on(X,Y), X \= Y.
+sobre(X,Y) :- on(X,Z),sobre(Z,Y), X \= Z, Y \= Z.
