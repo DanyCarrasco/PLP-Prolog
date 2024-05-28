@@ -92,4 +92,9 @@ casado(X) :- casado(X,_).
 casado(X) :- casado(_,X).
 
 soltero(X) :- \+ casado(X).  
-amante(X) :- (casado(X,Z); casado(Z,X)); (casado(X,Y); casado(Y, X)), X \= Z, X\= Y, Z \= Y.
+amante(X,Y) :- casado(X,Y), casado(Z,X), casado(Y,W), X \= Z, X \= Y, X \= W, Y \= W, Z \= Y, Z \= W.
+amante(X,Y) :- casado(Y,X), casado(Z,X), casado(W,Y), X \= Z, X \= Y, X \= W, Y \= W, Z \= Y, Z \= W.
+suegra(X,Y) :- femenino(X), progenitor(X,Z), casado(Z,Y), X \= Y, X \= Z, Y \= Z.
+suegra(X,Y) :- femenino(X), progenitor(X,Z), casado(Y,Z), X \= Y, X \= Z, Y \= Z.
+suegro(X,Y) :- masculino(X), progenitor(X,Z), casado(Z,Y), X \= Y, X \= Z, Y \= Z.
+suegro(X,Y) :- masculino(X), progenitor(X,Z), casado(Y,Z), X \= Y, X \= Z, Y \= Z.
