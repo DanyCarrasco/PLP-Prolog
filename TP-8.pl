@@ -114,3 +114,8 @@ sobre(X,Y) :- on(X,Z),sobre(Z,Y), X \= Z, Y \= Z.
 %punto 3
 numeral(0).
 numeral(succ(X)):- numeral(X).
+
+suma(0,Y,Y).
+suma(succ(X),Y,succ(R)) :- suma(X,Y,R).
+
+resta(X,Y,Z) :- suma(Y,Z,X).
