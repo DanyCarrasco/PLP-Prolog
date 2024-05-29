@@ -110,3 +110,7 @@ on(h,g).
 
 sobre(X,Y) :- on(X,Y), X \= Y.
 sobre(X,Y) :- on(X,Z),sobre(Z,Y), X \= Z, Y \= Z.
+
+%punto 3
+numeral(0).
+numeral(succ(X)):- numeral(X).
