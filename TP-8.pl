@@ -119,3 +119,12 @@ suma(0,Y,Y).
 suma(succ(X),Y,succ(R)) :- suma(X,Y,R).
 
 resta(X,Y,Z) :- suma(Y,Z,X).
+multiplicacion(0,_,0).
+multiplicacion(1,Y,Y).
+multiplicacion(succ(X),Y,Z) :- suma(succ(X),succ(X),T),
+    multiplicacion(X,Y,T).
+producto(_,0,0).
+producto(X,1,X).
+producto(succ(X),Y,Z) :- 
+    resta(Z,X,Z1),
+        producto(X,Y,Z1).
