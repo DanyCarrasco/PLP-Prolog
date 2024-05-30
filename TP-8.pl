@@ -119,7 +119,7 @@ suma(0,Y,Y).
 suma(succ(X),Y,succ(R)) :- suma(X,Y,R).
 
 resta(X,Y,Z) :- suma(Y,Z,X).
-multiplicacion(0,_,0).
+/*multiplicacion(0,_,0).
 multiplicacion(1,Y,Y).
 multiplicacion(succ(X),Y,Z) :- suma(succ(X),succ(X),T),
     multiplicacion(X,Y,T).
@@ -127,4 +127,10 @@ producto(_,0,0).
 producto(X,1,X).
 producto(succ(X),Y,Z) :- 
     resta(Z,X,Z1),
-        producto(X,Y,Z1).
+        producto(X,Y,Z1).*/
+producto(succ(0),Y,Y).
+producto(succ(X),Y,R) :- producto(X,Y,Z), suma(Z,Y,R).
+division(X,Y,R) :- producto(Y,R,X).
+
+potenciacion(X,succ(0),X).
+potenciacion(X,succ(Y),R) :- potenciacion(X,Y,Z), producto(Z,X,R).
