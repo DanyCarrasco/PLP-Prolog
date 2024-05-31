@@ -134,3 +134,6 @@ division(X,Y,R) :- producto(Y,R,X).
 
 potenciacion(X,succ(0),X).
 potenciacion(X,succ(Y),R) :- potenciacion(X,Y,Z), producto(Z,X,R).
+orden(succ(X),0).
+orden(0,0).
+orden(succ(X),succ(Y)) :- orden(X,Y).
