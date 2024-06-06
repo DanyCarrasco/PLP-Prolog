@@ -217,9 +217,9 @@ union([],U,U).
 union([X|T],U,L) :- union(T,U,L1), exterminar(X,L1,L2), concatenacion([X],L2,L).
 
 %inciso d
-interseccion([],U,[]).
-interseccion([X|T],U,L) :- interseccion(T,U,L1), pertenece(X,U), concatenacion([X],L1,L).
-interseccion([X|T],U,L) :- interseccion(T,U,L1), \+ pertenece(X,U), concatenacion([],L1,L).
+interseccion([],_,[]).
+interseccion([X|T],U,L) :- pertenece(X,U), concatenacion([X],L1,L), interseccion(T,U,L1). /*, !.*/
+interseccion([X|T],U,L) :- interseccion(T,U,L). /*\+ pertenece(X,U), concatenacion([],L1,L).*/
 
 %inciso e
 diferencia([],U,[]).
