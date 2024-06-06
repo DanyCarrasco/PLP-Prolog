@@ -213,8 +213,8 @@ inclision(T,U) :- sufijo(T,U).
 igualdad(T,U) :- inclusion(T,U), inclusion(U,T).
 
 %inciso c
-union([],U,U)
-union([X|T],U,L) :- union(T,U,L1), concatenacion([X],L2,L).
+union([],U,U).
+union([X|T],U,L) :- union(T,U,L1), exterminar(X,L1,L2), concatenacion([X],L2,L).
 
 %inciso d
 interseccion([],U,[]).
