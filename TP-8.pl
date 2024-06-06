@@ -203,3 +203,24 @@ palindrome(T,L) :- inverso(T,U), comcatenacion(T,U,L).
 %inciso i
 duplicar([],[]).
 duplicar([H|T],L) :- duplicar(T,L1), concatenacion([H],[H],D), concatenacion(D,L1,L).
+
+%Punto 9
+%inciso a
+inclusion(T,U) :- prefijo(T,U).
+inclision(T,U) :- sufijo(T,U).
+
+%inciso b
+igualdad(T,U) :- inclusion(T,U), inclusion(U,T).
+
+%inciso c
+union([],U,U)
+union([X|T],U,L) :- union(T,U,L1), concatenacion([X],L2,L).
+
+%inciso d
+interseccion([],U,[]).
+interseccion([X|T],U,L) :- interseccion(T,U,L1), pertenece(X,U), concatenacion([X],L1,L).
+interseccion([X|T],U,L) :- interseccion(T,U,L1), \+ pertenece(X,U), concatenacion([],L1,L).
+
+diferencia([],U,[]).
+diferencia([X|T],U,L) :- diferencia(T,U,L1), pertenece(X,U), concatenacion([],L1,L).
+diferencia([X|T],U,L) :- diferencia(T,U,L1), \+ pertenece(X,U), concatenacion([X],L1,L).
