@@ -172,5 +172,34 @@ prefijo([X|T],[H|U]) :- prefijo([X|T],U).
 %punto 8
 %inciso a
 izquierda([X|T],L) :- concatenacion(T,[X],L).
+
 %inciso b
 derecha(T,L) :- izquierda(L,T).
+
+%inciso c
+exterminar(X,[],[]).
+exterminar(X,[X|T],L) :- exterminar(X,T,L).
+exterminar(X,[H|T],L) :- exterminar(X,T,L1), concatenacion([H],L1,L).
+
+%inciso d
+intercambios(X,Y,[],[]).
+intercambios(X,Y,[X|T],L) :- intercambios(X,Y,T,L1), concatenacion([Y],L1,L).
+intercambios(X,Y,[H|T],L) :- intercambios(X,Y,T,L1), concatenacion([H],L1,L).
+
+%inciso e
+cardinalidad([],0).
+cardinalidad([X|T],R) :- exterminar(X,T,L), cardinalidad(L,R1), R is R1+1. 
+
+%inciso f
+inversion([],[]).
+inversion([H|T],L) :- inversion(T,L1), concatenacion(L1,[H],L).
+
+%inciso g
+sufijo(T,U) :- inversion(U,L), inversion(T,M), prefijo(M,L).
+
+%inciso h
+palindrome(T,L) :- inverso(T,U), comcatenacion(T,U,L).
+
+%inciso i
+duplicar([],[]).
+duplicar([H|T],L) :- duplicar(T,L1), concatenacion([H],[H],D), concatenacion(D,L1,L).
