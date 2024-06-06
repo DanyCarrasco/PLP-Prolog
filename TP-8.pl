@@ -221,6 +221,7 @@ interseccion([],U,[]).
 interseccion([X|T],U,L) :- interseccion(T,U,L1), pertenece(X,U), concatenacion([X],L1,L).
 interseccion([X|T],U,L) :- interseccion(T,U,L1), \+ pertenece(X,U), concatenacion([],L1,L).
 
+%inciso e
 diferencia([],U,[]).
 diferencia([X|T],U,L) :- diferencia(T,U,L1), pertenece(X,U), concatenacion([],L1,L).
 diferencia([X|T],U,L) :- diferencia(T,U,L1), \+ pertenece(X,U), concatenacion([X],L1,L).
