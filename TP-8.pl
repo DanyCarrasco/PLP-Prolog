@@ -137,3 +137,40 @@ potenciacion(X,succ(Y),R) :- potenciacion(X,Y,Z), producto(Z,X,R).
 orden(succ(X),0).
 orden(0,0).
 orden(succ(X),succ(Y)) :- orden(X,Y).
+
+%Punto 7
+%inciso a
+concatenacion([],L,L).
+concatenacion([H|L1], L2, [H|L3]) :- concatenacion(L1, L2, L3).
+
+%inciso b: pertenencia de un elemento
+pertenece(X, [X|T]).
+pertenece(X, [H|T]) :- pertenece(X,T).
+
+%inciso c: cantidad de ocurrencia de un elemento
+cantOcurrencias(X,[],0).
+cantOcurrencias(X,[X|T],Y) :- cantOcurrencias(X,T,Y1), Y is Y1 + 1.
+cantOcurrencias(X,[H|T],Y) :- cantOcurrencias(X,T,Y).
+
+%inciso d: eliminacion de la primera ocurrencia de un elemento
+eliminar(X,[X|T],T).
+eliminar(X,[H|T],L) :- eliminar(X,T,L1), concatenacion([H],L1,L).
+
+%inciso e: sustitucion de la primera ocurrencia de un elemento por otro
+sustituir(X,Y,[X|T],[Y|T]).
+sustituir(X,Y,[H|T],L) :- sustituir(X,Y,T,L1), concatenacion([H],L1,L).
+
+%inciso f: longitud, ejemplo: entra [1,2,1,3,4] y sale 5
+longitud([],0).
+longitud([H|T],R) :- longitud(T,R1), R is R1+1.
+
+%inciso g: prefijo
+prefijo([],T).
+prefijo([X|T],[X|U]) :- prefijo(T,U).
+prefijo([X|T],[H|U]) :- prefijo([X|T],U).
+
+%punto 8
+%inciso a
+izquierda([X|T],L) :- concatenacion(T,[X],L).
+%inciso b
+derecha(T,L) :- izquierda(L,T).
