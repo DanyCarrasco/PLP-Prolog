@@ -198,7 +198,7 @@ inversion([H|T],L) :- inversion(T,L1), concatenacion(L1,[H],L).
 sufijo(T,U) :- inversion(U,L), inversion(T,M), prefijo(M,L).
 
 %inciso h
-palindrome(T,L) :- inverso(T,U), comcatenacion(T,U,L).
+palindrome(T,L) :- inversion(T,U), concatenacion(T,U,L).
 
 %inciso i
 duplicar([],[]).
@@ -218,10 +218,10 @@ union([X|T],U,L) :- union(T,U,L1), exterminar(X,L1,L2), concatenacion([X],L2,L).
 
 %inciso d
 interseccion([],_,[]).
-interseccion([X|T],U,L) :- pertenece(X,U), concatenacion([X],L1,L), interseccion(T,U,L1). /*, !.*/
-interseccion([X|T],U,L) :- interseccion(T,U,L). /*\+ pertenece(X,U), concatenacion([],L1,L).*/
+interseccion([X|T],U,[X|L]) :- pertenece(X,U), interseccion(T,U,L1).
+interseccion([X|T],U,L) :- interseccion(T,U,L). 
 
 %inciso e
 diferencia([],U,[]).
-diferencia([X|T],U,L) :- diferencia(T,U,L1), pertenece(X,U), concatenacion([],L1,L).
-diferencia([X|T],U,L) :- diferencia(T,U,L1), \+ pertenece(X,U), concatenacion([X],L1,L).
+diferencia([X|T],U,L) :- pertenece(X,U), diferencia(T,U,L).
+diferencia([X|T],U,[X|L]) :- \+ pertenece(X,U), diferencia(T,U,L).
